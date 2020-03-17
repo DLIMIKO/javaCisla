@@ -1,9 +1,9 @@
-package map.rovnica;
+package map.cisla;
 
 
-import static map.rovnica.Cisla.generujCislaDoSuboru;
-import static map.rovnica.Cisla.filtrujPrvocisla;
-import static map.rovnica.Cisla.zapisPocetnost;
+import static map.cisla.Cisla.generujCislaDoSuboru;
+import static map.cisla.Cisla.filtrujPrvocisla;
+import static map.cisla.Cisla.zapisPocetnost;
 
 /**
  * Dobrý deň pán profesor, tu je môj program + meranie času s presnosťou na nanosekundy :)

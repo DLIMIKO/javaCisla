@@ -1,4 +1,4 @@
-package map.rovnica;
+package map.cisla;
 
 import java.io.*;
 import java.util.Map;
