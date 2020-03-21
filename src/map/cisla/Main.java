@@ -18,7 +18,7 @@ public class Main
         long mark1 = System.nanoTime();
 
         //generátor pseudonáhodných čísiel
-        generujCislaDoSuboru("cisla.txt",1000,100);
+        generujCislaDoSuboru("cisla.txt",10000000,100);
 
         long mark2 = System.nanoTime();
 

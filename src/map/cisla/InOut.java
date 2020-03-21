@@ -1,6 +1,7 @@
 package map.cisla;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Vector;
 
@@ -19,14 +20,14 @@ public class InOut
      * @throws IOException ak nastane chyba pri načítaní dát
      * @throws NumberFormatException ak by súbor obsahoval iné znaky než čísla int
      */
-    public static Vector<Integer> citajCisla (String vstup)
+    public static ArrayList<Integer> citajCisla (String vstup)
 
     {
         //inicalizácia  buffra:
         BufferedReader fin=null;
 
         //inicalizácia  kontajnera, do kt. sa zapíšu hodnoty:
-        Vector<Integer> cisla=new Vector<>();
+        ArrayList<Integer> cisla=new ArrayList<>();
 
         try
         {
@@ -95,7 +96,7 @@ public class InOut
      * @throws NumberFormatException ak by súbor obsahoval iné znaky než čísla int
      */
 
-    public static void zapisCisla(String vystup, Vector<Integer> poleCisiel)
+    public static void zapisCisla(String vystup, ArrayList<Integer> poleCisiel)
     {
         //inicializácia buffra
         BufferedWriter fout=null;

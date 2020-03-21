@@ -23,12 +23,14 @@ public class Cisla
              Random rand=new Random();
 
              //inicializácia kontajnera do kt. sa budú generovať čísla:
-             Vector<Integer> pole = new Vector<>();
+            // Vector<Integer> pole = new Vector<>();
+             ArrayList<Integer> pole=new ArrayList<>();
 
             //generátor pre pseudonáhodné čísla, kt. sa zapíšu do kontajnera:
              for(int i=0;i<pocet;++i)
             {
                 pole.add(rand.nextInt(rozsah));
+
             }
 
             //zápis kontajnera do súboru:
@@ -44,21 +46,23 @@ public class Cisla
         static void filtrujPrvocisla(String vstup, String vystup)
          {
           //iniciailizácia kontajnera Vector, do kt. sa uložia čísla zo súboru:
-             Vector<Integer> vsetkyCisla = new Vector<>(InOut.citajCisla(vstup));
+             ArrayList<Integer> vsetkyCisla = new ArrayList<>(InOut.citajCisla(vstup));
 
            // inicializácia druhého kontajnera Vector, kt. nakopíruje do seba hodnoty z prvého kontajnera:
-             Vector<Integer> prvocisla = new Vector<>(vsetkyCisla);
+            ArrayList<Integer> prvocisla = new ArrayList<>();
 
              /*
                 filter prvočísel:
                 Funguje na princípe, že cyklus "for" iteruje kontajner vsetkyCisla.
-                Ak vňom nájde nejaké zložené číslo "z", vymaže ho z kontajnera prvocisla.
+                Ak vňom nájde nejaké prvočíslo číslo "z", pridá ho z kontajnera prvocisla.
 
-                POZNÁMKA: Java neumožňuje  prechádzať kontajner Vector a súčasne ho mazať, preto
+                POZNÁMKA: Java neumožňuje  prechádzať kontajner ArrayList a súčasne ho mazať, preto
                           musel byť problém vyriešený dvoma kontajnermi.
 
                 Zisťovanie, či je dané  číslo "z" zložené číslo sa uskutočňuje pomocou druhého cyklu "for", kt.
-                skúša či je "z" deliteľné číslami  v intervale < 2 ; sqrt(n) ). Ak ho nájde, zastaví hľadanie a zmaže ho.
+                skúša či je "z" deliteľné číslami  v intervale < 2 ; sqrt(n) ). Ak ho nájde, zastaví hľadanie a nastaví
+                hodnotu jePrvocislo na false. V opačnom prípade je implicitne nastavená na true. Následne sa funkcia
+                na základe hodnoty jePrvpcislo rozhodne, či hodnotu zapíše do kontajnera prvočísla alebo nie.
                 Bolo zistené, že pri každom čísle stačí hľadať delitele iba po jeho druhú odmocninu -- zrýchľuje to kód.
                 Táto filtrácia však neplatí pre čísla 0 a 1, čo bolo treba taktiež ošetriť.
 
@@ -66,17 +70,21 @@ public class Cisla
 
            for (int value : vsetkyCisla)
            {
+
+              //logická hodnota, kt. určí či je číslo prvočíslo
+               boolean jePrvocislo=true;
+
                for(int i=2;i<=Math.sqrt(value);i++)
                {
                    if(value % i == 0)
                    {
-                       prvocisla.remove((Integer) value);
+                       jePrvocislo=false;
                        break;
                    }
                }
-               if(value<2)
+               if (jePrvocislo && value>=2)
                {
-                   prvocisla.remove((Integer) value);
+                   prvocisla.add(value);
                }
            }
 
@@ -95,7 +103,7 @@ public class Cisla
     public static void zapisPocetnost(String vstup, String vystup)
     {
         //iniciailizácia kontajnera Vector, do kt. sa uložia čísla zo súboru:
-        Vector<Integer> vsetkyCisla=InOut.citajCisla(vstup);
+        ArrayList<Integer> vsetkyCisla=InOut.citajCisla(vstup);
 
         // nakopírovanie kontajnera typu Vector do kontajnera Set, aby sa odstránili duplicitné hodnoty:
         Set<Integer> cislaBezDuplicit = new HashSet<>(vsetkyCisla);
